@@ -9,6 +9,9 @@ using System.Threading.Tasks;
 
 namespace RevenueService.Api.Controllers
 {
+    /// <summary>
+    /// Reference: http://www.rd.go.th/publish/42539.0.html
+    /// </summary>
     [Route("api/[controller]")]
     [ApiController]
     public class CommonServiceController : BaseApiController
@@ -16,7 +19,15 @@ namespace RevenueService.Api.Controllers
         private const string VATCommonService = "VATCommonService";
         private const string VRTCommonService = "VRTCommonService";
 
-
+        /// <summary>
+        /// ให้บริการข้อมูลพื้นฐานของร้านค้าที่ได้รับสิทธิ์คืนภาษีมูลค่าเพิ่มให้นักท่องเที่ยวเป็นข้อมูล และ ข้อมูลพื้นฐานของผู้ประกอบการจดทะเบียนภาษีมูลค่าเพิ่มเป็นข้อมูล
+        /// </summary>
+        /// <remarks>
+        /// ให้บริการข้อมูลพื้นฐานของร้านค้าที่ได้รับสิทธิ์คืนภาษีมูลค่าเพิ่มให้นักท่องเที่ยวเป็นข้อมูล รหัสจังหวัด ชื่อจังหวัด รหัสประเภทธุรกิจ ชื่อประเภทธุรกิจ รหัสถนน และชื่อถนน
+        /// ให้บริการข้อมูลพื้นฐานของผู้ประกอบการจดทะเบียนภาษีมูลค่าเพิ่มเป็นข้อมูล รหัสอำเภอ รหัสจังหวัด คำอธิบายรหัส(คำอธิบายจะแสดงเป็นชื่ออำเภอหรือชื่อจังหวัดเช่น กรณีที่รหัสอำเภอลงท้ายด้วย '00' จะแสดงชื่อจังหวัด ถ้าลงท้ายด้วยเลขอื่นจะแสดงชื่ออำเภอในจังหวัดนั้นๆ)
+        /// </remarks>
+        /// <param name="typeOfService"></param>
+        /// <returns></returns>
         [HttpGet("Get/{typeOfService}")]
         public async Task<ActionResult<HttpResultModel>> Get(string typeOfService)
         {
@@ -98,6 +109,15 @@ namespace RevenueService.Api.Controllers
             return Ok(httpResult);
         }
 
+        /// <summary>
+        /// ให้บริการข้อมูลพื้นฐานของร้านค้าที่ได้รับสิทธิ์คืนภาษีมูลค่าเพิ่มให้นักท่องเที่ยวเป็นข้อมูล และ ข้อมูลพื้นฐานของผู้ประกอบการจดทะเบียนภาษีมูลค่าเพิ่มเป็นข้อมูล
+        /// </summary>
+        /// <remarks>
+        /// ให้บริการข้อมูลพื้นฐานของร้านค้าที่ได้รับสิทธิ์คืนภาษีมูลค่าเพิ่มให้นักท่องเที่ยวเป็นข้อมูล รหัสจังหวัด ชื่อจังหวัด รหัสประเภทธุรกิจ ชื่อประเภทธุรกิจ รหัสถนน และชื่อถนน
+        /// ให้บริการข้อมูลพื้นฐานของผู้ประกอบการจดทะเบียนภาษีมูลค่าเพิ่มเป็นข้อมูล รหัสอำเภอ รหัสจังหวัด คำอธิบายรหัส(คำอธิบายจะแสดงเป็นชื่ออำเภอหรือชื่อจังหวัดเช่น กรณีที่รหัสอำเภอลงท้ายด้วย '00' จะแสดงชื่อจังหวัด ถ้าลงท้ายด้วยเลขอื่นจะแสดงชื่ออำเภอในจังหวัดนั้นๆ)
+        /// </remarks>
+        /// <param name="model"></param>
+        /// <returns></returns>
         [HttpGet("Get")]
         public async Task<ActionResult<HttpResultModel>> Get([FromBody]Model.Common model)
         {
