@@ -1,0 +1,487 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>RevenueService.Api</name>
+    </assembly>
+    <members>
+        <member name="T:RevenueService.Api.Controllers.GEMServiceController">
+            <summary>
+            Reference: http://www.rd.go.th/publish/42532.0.html
+            </summary>
+        </member>
+        <member name="M:RevenueService.Api.Controllers.GEMServiceController.Get(RevenueService.Api.Model.GEM)">
+            <summary>
+            ให้บริการข้อมูลที่ผู้ประกอบการนำเข้า หรือขายอัญมณี ทองคำขาว เงิน และพาราเดียม ผู้จดทะเบียนที่สำนัก บริหารภาษีธุรกิจขนาดใหญ่ หรือ สำนักงานสรรพากรพื้นที่ ที่ผู้ประกอบการอยู่ภายใต้การบริหาร เพื่อขอสิทธิ์ยกเว้นภาษีมูลค่าเพิ่ม โดยให้บริการสำหรับผู้ประกอบการทั้งในและต่างประเทศที่ต้องการ
+            </summary>
+            <remarks>
+            ให้บริการข้อมูลที่ผู้ประกอบการนำเข้า หรือขายอัญมณี ทองคำขาว เงิน และพาราเดียม ผู้จดทะเบียนที่สำนัก บริหารภาษีธุรกิจขนาดใหญ่ หรือ สำนักงานสรรพากรพื้นที่ ที่ผู้ประกอบการอยู่ภายใต้การบริหาร เพื่อขอสิทธิ์ยกเว้นภาษีมูลค่าเพิ่ม โดยให้บริการสำหรับผู้ประกอบการทั้งในและต่างประเทศที่ต้องการ ตรวจสอบความมีตัวตนจริงของคู่ค้า และสามารถตรวจสอบการได้รับสิทธิยกเว้นภาษีมูลค่าเพิ่มจากกรมสรรพากร อย่างถูกต้อง ตามกฎหมาย ทั้งนี้ กรมศุลกากร นำไปใช้เพื่อตรวจสอบผู้ประกอบการนำเข้าอัญมณีว่ารายใดได้รับสิทธิ์ยกเว้นภาษีมูลค่าเพิ่มจากกรมสรรพากร เพื่อประโยชน์ในการจัดเก็บภาษีมูลค่าเพิ่มได้อย่างถูกต้องครบถ้วน โดยพิจารณาจากวันที่ได้รับสิทธิ์ยกเว้นภาษีมูลค่าเพิ่ม
+            </remarks>
+            <param name="model">GEM Model: โยนค่า 
+            </param>
+            <returns></returns>
+        </member>
+        <member name="T:RevenueService.Api.Controllers.TINServiceController">
+            <summary>
+            Reference: http://www.rd.go.th/publish/42533.0.html
+            </summary>
+        </member>
+        <member name="M:RevenueService.Api.Controllers.TINServiceController.GetById(System.String)">
+            <summary>
+            ให้บริการตรวจสอบความถูกต้องของเลขประจำตัว ผู้เสียภาษีอากร และเลขประจำตัวประชาชน ว่าเป็นเลขที่มีอยู่จริง และเป็นเลขที่ถูกต้อง
+            </summary>
+            <remarks>ให้บริการตรวจสอบความถูกต้องของเลขประจำตัว ผู้เสียภาษีอากร และเลขประจำตัวประชาชน ว่าเป็นเลขที่มีอยู่จริง และเป็นเลขที่ถูกต้อง หน่วยงาน ที่ต้องการตรวจสอบ ความมีอยู่จริง ของเลขประจำตัว ผู้เสียภาษีอากร และเลขประจำตัวประชาชน เพื่อป้องกัน การปลอมเลขประจำตัว ผู้เสียภาษีอากร และเลขประจำตัวประชาชน ในการประกอบธุรกรรมต่างๆ ที่ก่อให้เกิดความเสียหาย แก่หน่วยงานหรือผู้ประกอบการต่างๆ</remarks>
+            <param name="tIN">เลขประจำตัวผู้เสียภาษีอากร</param>
+            <returns></returns>
+        </member>
+        <member name="T:RevenueService.Api.Controllers.VATServiceController">
+            <summary>
+            Reference: http://www.rd.go.th/publish/42535.0.html
+            </summary>
+        </member>
+        <member name="M:RevenueService.Api.Controllers.VATServiceController.GetById(System.String)">
+            <summary>
+            ให้บริการข้อมูลการตรวจสอบสถานะ และรายละเอียดผู้ประกอบการ ที่ได้ดำเนินการจดทะเบียนกับกรมสรรพากรอย่างถูกต้อง
+            </summary>
+            <remarks>
+            ให้บริการข้อมูลการตรวจสอบสถานะ และรายละเอียดผู้ประกอบการ ที่ได้ดำเนินการจดทะเบียนกับกรมสรรพากรอย่างถูกต้อง อีกทั้งมีสิทธิ ในการออก ใบกำกับภาษีมูลค่าเพิ่ม ตามกฎหมาย ผู้ประกอบการ ทั้งในและต่างประเทศ ที่ต้องการตรวจสอบ บริษัทคู่ค้าว่าเป็นผู้ที่สามารถ ออกใบกำกับภาษีได้ถูกต้อง ตามกฎหมายไทย หรือไม่ เนื่องจากสถานะนี้สามารถเปลี่ยนแปลง ซึ่งป้องกันการแอบอ้าง การออกใบกำกับภาษีอย่างผิดกฎหมาย ซึ่งจะเกิดความเสียหาย แก่บริษัทผู้ใช้บริการ หรือรับใบกำกับภาษีดังกล่าว อีกทั้งเป็นการตรวจสอบ การมีตัวตนจริงของคู่ค้าดังกล่าว
+            </remarks>
+            <param name="tIN">เลขประจำตัวผู้เสียภาษี</param>
+            <returns></returns>
+        </member>
+        <member name="M:RevenueService.Api.Controllers.VATServiceController.Get(RevenueService.Api.Model.VAT)">
+            <summary>
+            ให้บริการข้อมูลการตรวจสอบสถานะ และรายละเอียดผู้ประกอบการ ที่ได้ดำเนินการจดทะเบียนกับกรมสรรพากรอย่างถูกต้อง
+            </summary>
+            <remarks>
+            ให้บริการข้อมูลการตรวจสอบสถานะ และรายละเอียดผู้ประกอบการ ที่ได้ดำเนินการจดทะเบียนกับกรมสรรพากรอย่างถูกต้อง อีกทั้งมีสิทธิ ในการออก ใบกำกับภาษีมูลค่าเพิ่ม ตามกฎหมาย ผู้ประกอบการ ทั้งในและต่างประเทศ ที่ต้องการตรวจสอบ บริษัทคู่ค้าว่าเป็นผู้ที่สามารถ ออกใบกำกับภาษีได้ถูกต้อง ตามกฎหมายไทย หรือไม่ เนื่องจากสถานะนี้สามารถเปลี่ยนแปลง ซึ่งป้องกันการแอบอ้าง การออกใบกำกับภาษีอย่างผิดกฎหมาย ซึ่งจะเกิดความเสียหาย แก่บริษัทผู้ใช้บริการ หรือรับใบกำกับภาษีดังกล่าว อีกทั้งเป็นการตรวจสอบ การมีตัวตนจริงของคู่ค้าดังกล่าว
+            </remarks>
+            <param name="model">VAT Model: โยนค่า TIN, Name, ProvinceCode, BranchNumber, AmphurCode
+            เลขประจำตัวผู้เสียภาษี(TIN)	เลขประจำตัวผู้เสียภาษีอากรที่ต้องการค้นหาข้อมูล 13 หลัก ถ้าไม่ทราบให้ว่างไว้
+            ชื่อของผู้ประกอบการ (Name)	ชื่อร้านค้าที่ต้องการค้นหา ถ้าไม่ทราบให้ว่างไว้
+            รหัสจังหวัด(ProvinceCode)	ถ้าไม่ทราบรหัส สามารถค้นหารหัสได้ใน CommonService ถ้าไม่ทราบให้ใส่ "0"
+            เลขที่สาขา(BranchNumbe)	เลขที่สาขาที่ต้องการทราบข้อมูล ถ้าไม่ทราบให้ใส่ "0"
+            รหัสอำเภอ(AmphurCode)	ถ้าไม่ทราบรหัส สามารถค้นหารหัสได้ใน CommonService ถ้าไม่ทราบให้ใส่ "0"</param>
+            <returns></returns>
+        </member>
+        <member name="T:RevenueService.Api.Controllers.VRTServiceController">
+            <summary>
+            Reference: http://www.rd.go.th/publish/42534.0.html
+            </summary>
+        </member>
+        <member name="M:RevenueService.Api.Controllers.VRTServiceController.GetAll">
+            <summary>
+            ให้บริการข้อมูลผู้ประกอบการ ที่ได้รับสิทธิเมื่อนักท่องเที่ยวต่างประเทศ ซื้อสินค้าแล้ว สามารถเรียกคืนภาษีมูลค่าเพิ่มได้ในภายหลัง
+            </summary>
+            <remarks>
+            ให้บริการข้อมูลผู้ประกอบการ ที่ได้รับสิทธิเมื่อนักท่องเที่ยวต่างประเทศ ซื้อสินค้าแล้ว สามารถเรียกคืนภาษีมูลค่าเพิ่มได้ในภายหลัง โดยให้บริการ สำหรับหน่วยงาน ที่ต้องการนำข้อมูลดังกล่าวไปให้ บริการนักท่องเที่ยว เพื่อตรวจสอบร้านค้า ที่นักท่องเที่ยวสามารถ เรียกคืนภาษีมูลค่าเพิ่ม ได้ถูกต้อง ตามกฎหมาย ซึ่งป้องกัน การแอบอ้าง จากร้านค้า ซึ่งจะเป็นปัญหาต่อ นักท่องเที่ยวในภายหลัง และให้นักท่องเที่ยว มีความมั่นใจในการซื้อสินค้าจากร้านดังกล่าว
+            </remarks>
+            <param name="shopName">ชื่อร้านค้าที่ต้องการค้นหา</param>
+            <returns></returns>
+        </member>
+        <member name="M:RevenueService.Api.Controllers.VRTServiceController.Get(RevenueService.Api.Model.VRT)">
+            <summary>
+            ให้บริการข้อมูลผู้ประกอบการ ที่ได้รับสิทธิเมื่อนักท่องเที่ยวต่างประเทศ ซื้อสินค้าแล้ว สามารถเรียกคืนภาษีมูลค่าเพิ่มได้ในภายหลัง
+            </summary>
+            <remarks>
+            ให้บริการข้อมูลผู้ประกอบการ ที่ได้รับสิทธิเมื่อนักท่องเที่ยวต่างประเทศ ซื้อสินค้าแล้ว สามารถเรียกคืนภาษีมูลค่าเพิ่มได้ในภายหลัง โดยให้บริการ สำหรับหน่วยงาน ที่ต้องการนำข้อมูลดังกล่าวไปให้ บริการนักท่องเที่ยว เพื่อตรวจสอบร้านค้า ที่นักท่องเที่ยวสามารถ เรียกคืนภาษีมูลค่าเพิ่ม ได้ถูกต้อง ตามกฎหมาย ซึ่งป้องกัน การแอบอ้าง จากร้านค้า ซึ่งจะเป็นปัญหาต่อ นักท่องเที่ยวในภายหลัง และให้นักท่องเที่ยว มีความมั่นใจในการซื้อสินค้าจากร้านดังกล่าว
+            </remarks>
+            <param name="model">
+            ชื่อร้านค้า (ShopName)	ชื่อร้านค้าที่ต้องการค้นหา
+            รหัสประเภทธุรกิจ(BusinessTypeCode) ถ้าไม่ทราบรหัส สามารถค้นหารหัสได้ใน CommonService
+            รหัสจังหวัด(ProvinceCode)  ถ้าไม่ทราบรหัส สามารถค้นหารหัสได้ใน CommonService
+            รหัสถนน(StreetCode) ถ้าไม่ทราบรหัส สามารถค้นหารหัสได้ใน CommonService
+            </param>
+            <returns></returns>
+        </member>
+        <member name="T:RevenueService.Api.Helper.PropertyCopier`2">
+            <summary>
+            https://www.pluralsight.com/guides/property-copying-between-two-objects-using-reflection
+            </summary>
+            <typeparam name="TParent"></typeparam>
+            <typeparam name="TChild"></typeparam>
+        </member>
+        <member name="P:RevenueService.Api.Model.Common.typeofservice">
+            <summary>
+            ถ้าต้องการเชื่อมต่อกับ VRTService ให้ส่ง "VRTCommonService"
+            ถ้าต้องการเชื่อมต่อกับ VATService ให้ส่ง "VATCommonService"
+            </summary>
+        </member>
+        <member name="F:RevenueService.Api.Model.Common.vBusinessTypeCode">
+            <summary>
+            รหัสประเภทธุรกิจ (BusinessTypeCode)
+            </summary>
+        </member>
+        <member name="F:RevenueService.Api.Model.Common.vBusinessTypeName">
+            <summary>
+            ชื่อประเภทธุรกิจ (BusinessTypeName)
+            </summary>
+        </member>
+        <member name="F:RevenueService.Api.Model.Common.vStreetCode">
+            <summary>
+            รหัสถนน (StreetCode)
+            </summary>
+        </member>
+        <member name="F:RevenueService.Api.Model.Common.vStreetName">
+            <summary>
+            ชื่อถนน (StreetName)
+            </summary>
+        </member>
+        <member name="F:RevenueService.Api.Model.Common.vVRTProvinceCode">
+            <summary>
+            รหัสจังหวัด (ProvinceCode)
+            </summary>
+        </member>
+        <member name="F:RevenueService.Api.Model.Common.vVRTProvinceName">
+            <summary>
+            ชื่อจังหวัด (ProvinceName)
+            </summary>
+        </member>
+        <member name="F:RevenueService.Api.Model.Common.vAmphurCode">
+            <summary>
+            รหัสอำเภอ (AmphurCode)
+            </summary>
+        </member>
+        <member name="F:RevenueService.Api.Model.Common.vProvinceCode">
+            <summary>
+            รหัสจังหวัด (ProvinceCode)
+            </summary>
+        </member>
+        <member name="F:RevenueService.Api.Model.Common.vDescription">
+            <summary>
+            ชื่ออำเภอ / จังหวัด (Description)
+            </summary>
+        </member>
+        <member name="F:RevenueService.Api.Model.Common.vMessErr">
+            <summary>
+            Error Message
+            </summary>
+        </member>
+        <member name="P:RevenueService.Api.Model.GEM.vTaxPayerID">
+            <summary>
+            เลขประจำตัวผู้เสียภาษี (TaxPayerID)	เลขประจำตัวผู้เสียภาษีอากรที่ต้องการค้นหาข้อมูล 13 หลัก(Please insert the taxpayer number for searching)
+            </summary>
+        </member>
+        <member name="P:RevenueService.Api.Model.GEM.vVATTaxPayerName">
+            <summary>
+            ชื่อของผู้ประกอบการ (VATTaxPayerName)	ชื่อร้านค้าที่ต้องการค้นหา (Please insert the name of the shops for searching)
+            </summary>
+        </member>
+        <member name="P:RevenueService.Api.Model.GEM.vVATTaxPayerSurname">
+            <summary>
+            นามสกุลของผู้ประกอบการ
+            </summary>
+        </member>
+        <member name="P:RevenueService.Api.Model.GEM.vGuildName">
+            <summary>
+            ชื่อสมาคมที่เป็นสมาชิก (GuildName)	มีให้เลือกดังนี้ (Please choose from the following)
+            - สมาคมผู้ค่าอัญมณีไทยและเครื่องประดับ / The Thai Gem and Jewelry Traders Association(TGJTA)
+            - สมาคมการค้าเพชรและพลอยอินเดียน-ไทย / Indian-Thai Diamond and Colorstone Association(ITDCA)
+            - สมาคมเครื่องถมและเครื่องเงินไทย / Thai Niello and Silver ware Association under Royal Patronage
+            - สมาคมผู้ผลิตอัญมณีและเครื่องประดับไทย / Thai Gem and Jewelry Manufacturers Association
+            - สมาคมเพชรพลอยเงินทอง / The Jeweller Association
+            - สมาคมผู้ประกอบการเจียระไนเพชร / Thai Diamond Manufacturers Association
+            - สมาคมผู้ค้าอัญมณีและเครื่องประดับจันทบุรี / Chanthaburi Gems and Jewelry Traders Association
+            </summary>
+        </member>
+        <member name="P:RevenueService.Api.Model.GEM.vProvinceCode">
+            <summary>
+            รหัสจังหวัด (ProvinceCode)	ถ้าไม่ทราบรหัส สามารถค้นหารหัสได้ใน CommonService (If Province code is not known, please search in CommonService)
+            </summary>
+        </member>
+        <member name="P:RevenueService.Api.Model.GEM.vNID">
+            <summary>
+            เลขประจำตัวผู้เสียภาษี 13 หลัก (NID)
+            </summary>
+        </member>
+        <member name="P:RevenueService.Api.Model.GEM.vTIN">
+            <summary>
+            คำนำหน้าชื่อ (TitleName)
+            </summary>
+        </member>
+        <member name="P:RevenueService.Api.Model.GEM.vProvince">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:RevenueService.Api.Model.GEM.vTitleName">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:RevenueService.Api.Model.GEM.vBuildingNumber">
+            <summary>
+            ชื่ออาคาร (BuildingName)
+            </summary>
+        </member>
+        <member name="P:RevenueService.Api.Model.GEM.vRoomNumber">
+            <summary>
+            ห้องที่ (RoomNumber)
+            </summary>
+        </member>
+        <member name="P:RevenueService.Api.Model.GEM.vFloorNumber">
+            <summary>
+            ชั้นที่ (FloorNumber)
+            </summary>
+        </member>
+        <member name="P:RevenueService.Api.Model.GEM.vVillageName">
+            <summary>
+            หมู่บ้าน (VillageName)
+            </summary>
+        </member>
+        <member name="P:RevenueService.Api.Model.GEM.vHouseNumber">
+            <summary>
+            เลขที่ตั้งของสถานประกอบการ (HouseNumber)
+            </summary>
+        </member>
+        <member name="P:RevenueService.Api.Model.GEM.vMooNumber">
+            <summary>
+            หมู่ที่ (MooNumber)
+            </summary>
+        </member>
+        <member name="P:RevenueService.Api.Model.GEM.vSoiName">
+            <summary>
+            ซอย (SoiName)
+            </summary>
+        </member>
+        <member name="P:RevenueService.Api.Model.GEM.vStreetName">
+            <summary>
+            ถนน (StreetName)
+            </summary>
+        </member>
+        <member name="P:RevenueService.Api.Model.GEM.vThambolName">
+            <summary>
+            ตำบล (ThumbolName)
+            </summary>
+        </member>
+        <member name="P:RevenueService.Api.Model.GEM.vAmphurName">
+            <summary>
+            อำเภอ (AmphurName)
+            </summary>
+        </member>
+        <member name="P:RevenueService.Api.Model.GEM.vProvinceName">
+            <summary>
+            จังหวัด (ProvinceName)
+            </summary>
+        </member>
+        <member name="P:RevenueService.Api.Model.GEM.vPostCode">
+            <summary>
+            รหัสไปรษณีย์ (PostCode)
+            </summary>
+        </member>
+        <member name="P:RevenueService.Api.Model.GEM.vPrivilegeDate">
+            <summary>
+            วันเดือนปีที่กรมสรรพากรอนุมัติให้ใช้สิทธิ์ได้(PrivilegeDate)
+            </summary>
+        </member>
+        <member name="T:RevenueService.Api.Model.HttpResultModel">
+            <summary>
+            Http Response
+            </summary>
+        </member>
+        <member name="T:RevenueService.Api.Model.TINResult">
+            <summary>
+            Model ของ TINSoapService
+            </summary>
+        </member>
+        <member name="P:RevenueService.Api.Model.TINResult.ID">
+            <summary>
+            เลขประจำตัวฯ ที่นำเข้าเพื่อตรวจสอบ
+            </summary>
+        </member>
+        <member name="P:RevenueService.Api.Model.TINResult.DigitOk">
+            <summary>
+            ผลการตรวจสอบ ถูกต้อง หรือ ไม่ถูกต้อง
+            </summary>
+        </member>
+        <member name="P:RevenueService.Api.Model.TINResult.IsExist">
+            <summary>
+            มี หรือ ไม่มี อยู่ในฐานข้อมูลกรมสรรพากร
+            </summary>
+        </member>
+        <member name="T:RevenueService.Api.Model.VAT">
+            <summary>
+            Model รายละเอียดผู้ประกอบการ ที่ได้ดำเนินการจดทะเบียนกับกรมสรรพากรอย่างถูกต้อง
+            </summary>
+        </member>
+        <member name="P:RevenueService.Api.Model.VAT.vNID">
+            <summary>
+            เลขประจำตัวผู้เสียภาษี 13 หลัก (NID)
+            </summary>
+        </member>
+        <member name="P:RevenueService.Api.Model.VAT.vtin">
+            <summary>
+            เลขประจำตัวผู้เสียภาษี
+            </summary>
+        </member>
+        <member name="P:RevenueService.Api.Model.VAT.vtitleName">
+            <summary>
+            คำนำหน้าชื่อของผู้ประกอบการ (Name)
+            </summary>
+        </member>
+        <member name="P:RevenueService.Api.Model.VAT.vName">
+            <summary>
+            ชื่อของผู้ประกอบการ (Name)
+            </summary>
+        </member>
+        <member name="P:RevenueService.Api.Model.VAT.vSurname">
+            <summary>
+             นามสกุลของผู้ประกอบการ (SurName)
+            </summary>
+        </member>
+        <member name="P:RevenueService.Api.Model.VAT.vBranchNumber">
+            <summary>
+            เลขทีสาขา (BranchNumber)
+            </summary>
+        </member>
+        <member name="P:RevenueService.Api.Model.VAT.vBranchTitleName">
+            <summary>
+            คำนำหน้าชื่อ (BranchTitle)
+            </summary>
+        </member>
+        <member name="P:RevenueService.Api.Model.VAT.vBranchName">
+            <summary>
+            ชื่อสถานประกอบการ (BranchName)
+            </summary>
+        </member>
+        <member name="P:RevenueService.Api.Model.VAT.vBuildingName">
+            <summary>
+            ชื่ออาคาร (BuildingName)
+            </summary>
+        </member>
+        <member name="P:RevenueService.Api.Model.VAT.vRoomNumber">
+            <summary>
+            ห้องที่ (RoomNumber)
+            </summary>
+        </member>
+        <member name="P:RevenueService.Api.Model.VAT.vFloorNumber">
+            <summary>
+            ชั้นที่ (FloorNumber)
+            </summary>
+        </member>
+        <member name="P:RevenueService.Api.Model.VAT.vVillageName">
+            <summary>
+            หมู่บ้าน (VillageName)
+            </summary>
+        </member>
+        <member name="P:RevenueService.Api.Model.VAT.vHouseNumber">
+            <summary>
+            เลขที่ตั้งของสถานประกอบการ (HouseNumber)
+            </summary>
+        </member>
+        <member name="P:RevenueService.Api.Model.VAT.vMooNumber">
+            <summary>
+            หมู่ที่ (MooNumber)
+            </summary>
+        </member>
+        <member name="P:RevenueService.Api.Model.VAT.vSoiName">
+            <summary>
+            ซอย (SoiName)
+            </summary>
+        </member>
+        <member name="P:RevenueService.Api.Model.VAT.vStreetName">
+            <summary>
+            ถนน (StreetName)
+            </summary>
+        </member>
+        <member name="P:RevenueService.Api.Model.VAT.vThambol">
+            <summary>
+            ตำบล (ThumbolName)
+            </summary>
+        </member>
+        <member name="P:RevenueService.Api.Model.VAT.vAmphur">
+            <summary>
+            อำเภอ (AmphurName)
+            </summary>
+        </member>
+        <member name="P:RevenueService.Api.Model.VAT.vProvince">
+            <summary>
+            จังหวัด (ProvinceName)
+            </summary>
+        </member>
+        <member name="P:RevenueService.Api.Model.VAT.vPostCode">
+            <summary>
+            รหัสไปรษณีย์ (PostCode)
+            </summary>
+        </member>
+        <member name="P:RevenueService.Api.Model.VAT.vBusinessFirstDate">
+            <summary>
+            วันที่กรมสรรพากรอนุมัติให้เป็นผู้ประกอบการจดทะเบียนภาษีมูลค่าเพิ่ม ซึ่งมีสิทธิ์ออกใบกำกับภาษีซื้อ (BusinessFirstDate)
+            </summary>
+        </member>
+        <member name="P:RevenueService.Api.Model.VAT.vmsgerr">
+            <summary>
+            Error Message
+            </summary>
+        </member>
+        <member name="T:RevenueService.Api.Model.VRT">
+            <summary>
+            Model ข้อมูลผู้ประกอบการ
+            </summary>
+        </member>
+        <member name="P:RevenueService.Api.Model.VRT.vBusinessName">
+            <summary>
+            ชื่อสถานประกอบการ (BusinessName)
+            </summary>
+        </member>
+        <member name="P:RevenueService.Api.Model.VRT.vBusinessTypeCode">
+            <summary>
+            รหัสประเภทธุรกิจ (BusinessTypeCode)
+            </summary>
+        </member>
+        <member name="P:RevenueService.Api.Model.VRT.vBusinessTypeName">
+            <summary>
+            ชื่อประเภทธุรกิจ (BusinessTypeName)
+            </summary>
+        </member>
+        <member name="P:RevenueService.Api.Model.VRT.vShopName">
+            <summary>
+            ชื่อร้าน (ShopName)
+            </summary>
+        </member>
+        <member name="P:RevenueService.Api.Model.VRT.vHouseNumber">
+            <summary>
+            เลขที่ตั้งของสถานประกอบการ (HouseNumber)
+            </summary>
+        </member>
+        <member name="P:RevenueService.Api.Model.VRT.vStreetCode">
+            <summary>
+            รหัสถนน(StreetCode)
+            </summary>
+        </member>
+        <member name="P:RevenueService.Api.Model.VRT.vStreetName">
+            <summary>
+            ถนน (StreetName)
+            </summary>
+        </member>
+        <member name="P:RevenueService.Api.Model.VRT.vThambolName">
+            <summary>
+            ตำบล (ThumbolName)
+            </summary>
+        </member>
+        <member name="P:RevenueService.Api.Model.VRT.vAmphurName">
+            <summary>
+            อำเภอ (AmphurName)
+            </summary>
+        </member>
+        <member name="P:RevenueService.Api.Model.VRT.vProvinceCode">
+            <summary>
+            รหัสจังหวัด (ProvinceCode)
+            </summary>
+        </member>
+        <member name="P:RevenueService.Api.Model.VRT.vProvinceName">
+            <summary>
+            จังหวัด (ProvinceName)
+            </summary>
+        </member>
+        <member name="P:RevenueService.Api.Model.VRT.vPostCode">
+            <summary>
+            รหัสไปรษณีย์ (PostCode)
+            </summary>
+        </member>
+        <member name="P:RevenueService.Api.Model.VRT.vmsgerr">
+            <summary>
+            Error Message
+            </summary>
+        </member>
+    </members>
+</doc>
