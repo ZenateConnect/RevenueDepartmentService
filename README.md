@@ -1,5 +1,6 @@
 # RESTful API กรมสรรพากร / The Revenue Department Service
 ระบบจัดการ Service ของกรมสรรพากร โดยใช้ RESTful API ในการเชื่อมต่อกับ SOAP Web Service และแปลงข้อมูลให้อยู่ในรูปแบบของ JSON และใช้ Swagger
+Code ทั้งหมดนี้เป็นเพียง Code ตั้งต้น เพื่อนำไปต่อยอดต่อไป
 
 Document ของกรมสรรพากร: <a href='http://www.rd.go.th/publish/42545.0.html' target='_blank'>http://www.rd.go.th/publish/42545.0.html</a>
 API นี้จะประกอบไปด้วย Service ดังนี้ (รายละเอียดสามารถดูได้ตามลิงค์ที่แนบไว้)
