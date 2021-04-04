@@ -27,54 +27,44 @@ namespace RevenueService.Api.Controllers
         /// <param name="tIN">เลขประจำตัวผู้เสียภาษี</param>
         /// <returns></returns>
         [HttpGet("Get/{tIN}")]
-        public async Task<ActionResult<HttpResultModel>> GetById(string tIN)
+        public async Task<ActionResult<VAT>> GetById(string tIN)
         {
-            HttpResultModel httpResult = new HttpResultModel();
-            try
+            if (!string.IsNullOrWhiteSpace(tIN))
             {
-                if (!string.IsNullOrWhiteSpace(tIN))
-                {
-                    VATSoapService.vatserviceRD3SoapClient service = new VATSoapService.vatserviceRD3SoapClient();
-                    ChannelFactory<VATSoapService.vatserviceRD3Soap> channelFactory = service.ChannelFactory;
-                    // Must set certificates before CreateChannel()
-                    //string certificatepath1 = @"C:\Users\Me\source\repos\RevenueService\RevenueService.Api\Resources\adhq1.cer";
-                    //string certificatepath2 = @"C:\Users\Me\source\repos\RevenueService\RevenueService.Api\Resources\ADHQ5.cer";
-                    //X509Certificate2 certificate1 = new X509Certificate2(System.IO.File.ReadAllBytes(certificatepath1));
-                    //X509Certificate2 certificate2 = new X509Certificate2(System.IO.File.ReadAllBytes(certificatepath2));
-                    //channelFactory.Credentials.ClientCertificate.Certificate = certificate1;
-                    //channelFactory.Credentials.ServiceCertificate.DefaultCertificate = certificate2;
+                VATSoapService.vatserviceRD3SoapClient service = new VATSoapService.vatserviceRD3SoapClient();
+                ChannelFactory<VATSoapService.vatserviceRD3Soap> channelFactory = service.ChannelFactory;
+                // Must set certificates before CreateChannel()
+                //string certificatepath1 = @"C:\Users\Me\source\repos\RevenueService\RevenueService.Api\Resources\adhq1.cer";
+                //string certificatepath2 = @"C:\Users\Me\source\repos\RevenueService\RevenueService.Api\Resources\ADHQ5.cer";
+                //X509Certificate2 certificate1 = new X509Certificate2(System.IO.File.ReadAllBytes(certificatepath1));
+                //X509Certificate2 certificate2 = new X509Certificate2(System.IO.File.ReadAllBytes(certificatepath2));
+                //channelFactory.Credentials.ClientCertificate.Certificate = certificate1;
+                //channelFactory.Credentials.ServiceCertificate.DefaultCertificate = certificate2;
 
-                    VATSoapService.vatserviceRD3Soap channel = channelFactory.CreateChannel();
-                    VATSoapService.ServiceRequest serviceRequest = new VATSoapService.ServiceRequest
+                VATSoapService.vatserviceRD3Soap channel = channelFactory.CreateChannel();
+                VATSoapService.ServiceRequest serviceRequest = new VATSoapService.ServiceRequest
+                {
+                    Body = new VATSoapService.ServiceRequestBody
                     {
-                        Body = new VATSoapService.ServiceRequestBody
-                        {
-                            username = soapUsername,
-                            password = soapPassword,
-                            TIN = tIN,
-                            Name = "",
-                            ProvinceCode = 0,
-                            BranchNumber = 0,
-                            AmphurCode = 0,
-                        }
-                    };
+                        username = soapUsername,
+                        password = soapPassword,
+                        TIN = tIN,
+                        Name = "",
+                        ProvinceCode = 0,
+                        BranchNumber = 0,
+                        AmphurCode = 0,
+                    }
+                };
 
-                    VATSoapService.ServiceResponse responseMessage = await channel.ServiceAsync(serviceRequest);
-                    VATSoapService.vat soapResult = responseMessage?.Body.ServiceResult;
-                    Model.VAT vat = new Model.VAT(soapResult);
-                    httpResult.SetPropertyHttpResult(httpResult, true, "", "", StatusCodes.Status200OK, vat);
-                }
-                else
-                {
-                    httpResult.SetPropertyHttpResult(httpResult, true, "", "", StatusCodes.Status400BadRequest);
-                }
+                VATSoapService.ServiceResponse responseMessage = await channel.ServiceAsync(serviceRequest);
+                VATSoapService.vat soapResult = responseMessage?.Body.ServiceResult;
+                VAT vat = new VAT(soapResult);
+                return vat;
             }
-            catch (Exception ex)
+            else
             {
-                httpResult.SetPropertyHttpResult(httpResult, false, "", ex.Message, StatusCodes.Status500InternalServerError);
+                return BadRequest("Invalid tIN");
             }
-
-            return httpResult;
         }
 
         /// <summary>
