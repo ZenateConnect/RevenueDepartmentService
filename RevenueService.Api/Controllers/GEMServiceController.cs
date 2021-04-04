@@ -1,9 +1,6 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
 using System.ServiceModel;
 using System.Threading.Tasks;
-using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using RevenueService.Api.Model;
 
@@ -26,40 +23,30 @@ namespace RevenueService.Api.Controllers
         /// </param>
         /// <returns></returns>
         [HttpGet("Get")]
-        public async Task<ActionResult<HttpResultModel>> Get([FromBody]Model.GEM model)
+        public async Task<ActionResult<GEM>> Get([FromBody]GEM model)
         {
-            HttpResultModel httpResult = new HttpResultModel();
-            try
+            GEMSoapService.gemserviceRD3SoapClient service = new GEMSoapService.gemserviceRD3SoapClient();
+            ChannelFactory<GEMSoapService.gemserviceRD3Soap> channelFactory = service.ChannelFactory;
+            GEMSoapService.gemserviceRD3Soap channel = channelFactory.CreateChannel();
+            GEMSoapService.ServiceRequest serviceRequest = new GEMSoapService.ServiceRequest
             {
-                GEMSoapService.gemserviceRD3SoapClient service = new GEMSoapService.gemserviceRD3SoapClient();
-                ChannelFactory<GEMSoapService.gemserviceRD3Soap> channelFactory = service.ChannelFactory;
-                GEMSoapService.gemserviceRD3Soap channel = channelFactory.CreateChannel();
-                GEMSoapService.ServiceRequest serviceRequest = new GEMSoapService.ServiceRequest
+                Body = new GEMSoapService.ServiceRequestBody
                 {
-                    Body = new GEMSoapService.ServiceRequestBody
-                    {
-                        username = soapUsername,
-                        password = soapPassword,
-                        TIN = model.vTaxPayerID,
-                        ProvinceCode = Convert.ToInt32(model.vProvinceCode),
-                        GuildName = model.vGuildName,
-                        VATTaxPayerName = model.vVATTaxPayerName
-                    }
-                };
+                    username = soapUsername,
+                    password = soapPassword,
+                    TIN = model.vTaxPayerID,
+                    ProvinceCode = Convert.ToInt32(model.vProvinceCode),
+                    GuildName = model.vGuildName,
+                    VATTaxPayerName = model.vVATTaxPayerName
+                }
+            };
 
-                GEMSoapService.ServiceResponse responseMessage = await channel.ServiceAsync(serviceRequest);
-                GEMSoapService.gems soapResult = responseMessage?.Body.ServiceResult;
-                Model.GEM gemModel = new Model.GEM(soapResult);
-                // TODO: ตรงนี้ไม่มีตัวอย่างข้อมูลสำหรับทดสอบ หากต้องการใช้งานจะต้องพัฒนาต่อเอง
+            GEMSoapService.ServiceResponse responseMessage = await channel.ServiceAsync(serviceRequest);
+            GEMSoapService.gems soapResult = responseMessage?.Body.ServiceResult;
+            GEM gemModel = new GEM(soapResult);
+            // TODO: ตรงนี้ไม่มีตัวอย่างข้อมูลสำหรับทดสอบ หากต้องการใช้งานจะต้องพัฒนาต่อเอง
 
-                httpResult.SetPropertyHttpResult(httpResult, true, "", "", StatusCodes.Status200OK, gemModel);
-            }
-            catch (Exception ex)
-            {
-                httpResult.SetPropertyHttpResult(httpResult, false, "API Error", ex.Message, StatusCodes.Status500InternalServerError);
-            }
-
-            return Ok(httpResult);
+            return gemModel;
         }
     }
 }
