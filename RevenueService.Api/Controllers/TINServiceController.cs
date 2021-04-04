@@ -25,56 +25,46 @@ namespace RevenueService.Api.Controllers
         /// <param name="tIN">เลขประจำตัวผู้เสียภาษีอากร</param>
         /// <returns></returns>
         [HttpGet("Get/{tIN}")]
-        public async Task<ActionResult<HttpResultModel>> GetById(string tIN)
+        public async Task<ActionResult<TINResult>> GetById(string tIN)
         {
-            HttpResultModel httpResult = new HttpResultModel();
-            try
+            if (!string.IsNullOrEmpty(tIN))
             {
-                if (!string.IsNullOrEmpty(tIN))
+                TINSoapService.checktinpinserviceSoapClient service = new TINSoapService.checktinpinserviceSoapClient();
+                ChannelFactory<TINSoapService.checktinpinserviceSoap> channelFactory = service.ChannelFactory;
+                TINSoapService.checktinpinserviceSoap channel = channelFactory.CreateChannel();
+
+                TINSoapService.ServiceTINRequest serviceRequest = new TINSoapService.ServiceTINRequest
                 {
-                    TINSoapService.checktinpinserviceSoapClient service = new TINSoapService.checktinpinserviceSoapClient();
-                    ChannelFactory<TINSoapService.checktinpinserviceSoap> channelFactory = service.ChannelFactory;
-                    TINSoapService.checktinpinserviceSoap channel = channelFactory.CreateChannel();
-
-                    TINSoapService.ServiceTINRequest serviceRequest = new TINSoapService.ServiceTINRequest
+                    Body = new TINSoapService.ServiceTINRequestBody
                     {
-                        Body = new TINSoapService.ServiceTINRequestBody
-                        {
-                            username = soapUsername,
-                            password = soapPassword,
-                            TIN = tIN,
-                        }
-                    };
+                        username = soapUsername,
+                        password = soapPassword,
+                        TIN = tIN,
+                    }
+                };
 
-                    TINSoapService.ServiceTINResponse responseMessage = await channel.ServiceTINAsync(serviceRequest);
-                    object soapResult = responseMessage?.Body?.ServiceTINResult;
-                    JObject jObject = JObject.Parse(soapResult?.ToString());
+                TINSoapService.ServiceTINResponse responseMessage = await channel.ServiceTINAsync(serviceRequest);
+                object soapResult = responseMessage?.Body?.ServiceTINResult;
+                JObject jObject = JObject.Parse(soapResult?.ToString());
 
-                    TINResult tINResult = new TINResult
-                    {
-                        ID = ((JValue)((JContainer)jObject[nameof(TINResult.ID)]).First)?.Value?.ToString(),
-                        MessageErr = ((JValue)((JContainer)jObject[nameof(TINResult.MessageErr)]).First)?.Value?.ToString(),
-                        DigitOk = ((JValue)((JContainer)jObject[nameof(TINResult.DigitOk)]).First)?.Value?.ToString(),
-                        IsExist = ((JValue)((JContainer)jObject[nameof(TINResult.IsExist)]).First)?.Value?.ToString(),
-                        vID = ((JValue)((JContainer)jObject[nameof(TINResult.vID)]).First)?.Value?.ToString(),
-                        vMessageErr = ((JValue)((JContainer)jObject[nameof(TINResult.vMessageErr)]).First)?.Value?.ToString(),
-                        vDigitOk = ((JValue)((JContainer)jObject[nameof(TINResult.vDigitOk)]).First)?.Value?.ToString(),
-                        vIsExist = ((JValue)((JContainer)jObject[nameof(TINResult.vIsExist)]).First)?.Value?.ToString()
-                    };
-
-                    httpResult.SetPropertyHttpResult(httpResult, true, "", "", StatusCodes.Status200OK, tINResult);
-                }
-                else
+                TINResult tINResult = new TINResult
                 {
-                    httpResult.SetPropertyHttpResult(httpResult, true, "", "", StatusCodes.Status400BadRequest);
-                }
+                    ID = ((JValue)((JContainer)jObject[nameof(TINResult.ID)]).First)?.Value?.ToString(),
+                    MessageErr = ((JValue)((JContainer)jObject[nameof(TINResult.MessageErr)]).First)?.Value?.ToString(),
+                    DigitOk = ((JValue)((JContainer)jObject[nameof(TINResult.DigitOk)]).First)?.Value?.ToString(),
+                    IsExist = ((JValue)((JContainer)jObject[nameof(TINResult.IsExist)]).First)?.Value?.ToString(),
+                    vID = ((JValue)((JContainer)jObject[nameof(TINResult.vID)]).First)?.Value?.ToString(),
+                    vMessageErr = ((JValue)((JContainer)jObject[nameof(TINResult.vMessageErr)]).First)?.Value?.ToString(),
+                    vDigitOk = ((JValue)((JContainer)jObject[nameof(TINResult.vDigitOk)]).First)?.Value?.ToString(),
+                    vIsExist = ((JValue)((JContainer)jObject[nameof(TINResult.vIsExist)]).First)?.Value?.ToString()
+                };
+
+                return tINResult;
             }
-            catch (Exception ex)
+            else
             {
-                httpResult.SetPropertyHttpResult(httpResult, false, "", ex.Message, StatusCodes.Status500InternalServerError);
+                return BadRequest("Invalid tIN");
             }
-
-            return httpResult;
         }
     }
 }
