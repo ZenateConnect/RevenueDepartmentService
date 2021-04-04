@@ -1,7 +1,7 @@
 <?xml version="1.0"?>
 <doc>
     <assembly>
-        <name>RevenueService.Api</name>
+        <name>RevenueService.Api.v2</name>
     </assembly>
     <members>
         <member name="T:RevenueService.Api.Controllers.GEMServiceController">

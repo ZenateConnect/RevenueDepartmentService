@@ -21,14 +21,13 @@ namespace RevenueService.Api
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddControllers();
-
             services.AddSwaggerGen(c =>
-            {
-                c.SwaggerDoc("v1", new OpenApiInfo { Title = "Revenue Department Api", Version = "v1" });
-                string basePath = AppContext.BaseDirectory;
-                string xmlPath = Path.Combine(basePath, "RevenueService.Api.xml");
-                c.IncludeXmlComments(xmlPath);
-            });
+                {
+                    c.SwaggerDoc("v2", new OpenApiInfo { Title = "Revenue Department Api", Version = "v2" });
+                    string basePath = AppContext.BaseDirectory;
+                    string xmlPath = Path.Combine(basePath, "RevenueService.Api.v2.xml");
+                    c.IncludeXmlComments(xmlPath);
+                });
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -49,7 +48,7 @@ namespace RevenueService.Api
             // specifying the Swagger JSON endpoint.
             app.UseSwaggerUI(c =>
             {
-                c.SwaggerEndpoint("/RevenueDeptApi/swagger/v1/swagger.json", "Revenue Department V1");
+                c.SwaggerEndpoint("/RevenueDeptApi/swagger/v2/swagger.json", "Revenue Department V2");
             });
 
             app.UseAuthorization();

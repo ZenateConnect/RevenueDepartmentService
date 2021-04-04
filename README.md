@@ -19,12 +19,11 @@ API นี้จะประกอบไปด้วย Service ดังนี�
 
 # Swagger Document
 
-สามารถดูรายละเอียดต่างๆของ API โดย <a href='https://app.swaggerhub.com/apis-docs/sixnaskunz/RevenueDeptApi/v1' target='_blank'>คลิกที่นี่</a>
+สามารถดูรายละเอียดต่างๆของ API โดย <a href='https://app.swaggerhub.com/apis-docs/sixnaskunz/RevenueDeptApi/v2' target='_blank'>คลิกที่นี่</a>
 
 # Software Requirement
 
-1. Visual Studio 2017 or later
-2. .NET Core 2.2
-3. .NET Core Runtime 2.2
-4. Swashbuckle.AspNetCore v.4.0.1
-5. System.ServiceModel.Http v.4.4.0
+1. Visual Studio 2019
+2. .NET Core 3.1
+3. .NET Core Runtime 3.1
+4. Swashbuckle.AspNetCore v.6.1.1
