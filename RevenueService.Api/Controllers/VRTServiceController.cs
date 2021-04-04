@@ -25,63 +25,54 @@ namespace RevenueService.Api.Controllers
         /// <param name="shopName">ชื่อร้านค้าที่ต้องการค้นหา</param>
         /// <returns></returns>
         [HttpGet("GetAll")]
-        public async Task<ActionResult<HttpResultModel>> GetAll()
+        public async Task<ActionResult<IEnumerable<VRT>>> GetAll()
         {
-            HttpResultModel httpResult = new HttpResultModel();
-            try
+            List<VRT> listVRT = new List<VRT>();
+            VRTSoapService.vrtserviceRD3SoapClient service = new VRTSoapService.vrtserviceRD3SoapClient();
+            ChannelFactory<VRTSoapService.vrtserviceRD3Soap> channelFactory = service.ChannelFactory;
+            VRTSoapService.vrtserviceRD3Soap channel = channelFactory.CreateChannel();
+
+            VRTSoapService.ServiceRequest serviceRequest = new VRTSoapService.ServiceRequest
             {
-                VRTSoapService.vrtserviceRD3SoapClient service = new VRTSoapService.vrtserviceRD3SoapClient();
-                ChannelFactory<VRTSoapService.vrtserviceRD3Soap> channelFactory = service.ChannelFactory;
-                VRTSoapService.vrtserviceRD3Soap channel = channelFactory.CreateChannel();
-
-                VRTSoapService.ServiceRequest serviceRequest = new VRTSoapService.ServiceRequest
+                Body = new VRTSoapService.ServiceRequestBody
                 {
-                    Body = new VRTSoapService.ServiceRequestBody
-                    {
-                        username = soapUsername,
-                        password = soapPassword,
-                        ShopName = "",
-                        BusinessTypeCode = "",
-                        ProvinceCode = 0,
-                        StreetCode = 0
-                    }
-                };
-
-                VRTSoapService.ServiceResponse responseMessage = await channel.ServiceAsync(serviceRequest);
-                VRTSoapService.vrt soapResult = responseMessage?.Body?.ServiceResult;
-                List<VRT> listVRT = new List<VRT>();
-
-                if(soapResult != null)
-                {
-                    int countRecord = soapResult.vShopName.Count();
-
-                    for (int index = 0; index < countRecord; index++)
-                    {
-                        VRT vrtModel = new VRT
-                        {
-                            vShopName = soapResult.vShopName[index]?.ToString(),
-                            vBusinessTypeName = soapResult.vBusinessTypeName[index]?.ToString(),
-                            vBusinessName = soapResult.vBusinessName[index]?.ToString(),
-                            vHouseNumber = soapResult.vHouseNumber[index]?.ToString(),
-                            vStreetName = soapResult.vStreetName[index]?.ToString(),
-                            vThambolName = soapResult.vThambolName[index]?.ToString(),
-                            vAmphurName = soapResult.vAmphurName[index]?.ToString(),
-                            vProvinceName = soapResult.vProvinceName[index]?.ToString(),
-                            vPostCode = soapResult.vPostCode[index]?.ToString(),
-                            vmsgerr = soapResult.vmsgerr.Count() > 0 ? soapResult.vmsgerr[index]?.ToString() : null,
-                        };
-                        listVRT.Add(vrtModel);
-                    }
+                    username = soapUsername,
+                    password = soapPassword,
+                    ShopName = "",
+                    BusinessTypeCode = "",
+                    ProvinceCode = 0,
+                    StreetCode = 0
                 }
+            };
 
-                httpResult.SetPropertyHttpResult(httpResult, true, "", "", StatusCodes.Status200OK, listVRT);
-            }
-            catch (Exception ex)
+            VRTSoapService.ServiceResponse responseMessage = await channel.ServiceAsync(serviceRequest);
+            VRTSoapService.vrt soapResult = responseMessage?.Body?.ServiceResult;
+
+
+            if (soapResult != null)
             {
-                httpResult.SetPropertyHttpResult(httpResult, false, "", ex.Message, StatusCodes.Status500InternalServerError);
+                int countRecord = soapResult.vShopName.Count();
+
+                for (int index = 0; index < countRecord; index++)
+                {
+                    VRT vrtModel = new VRT
+                    {
+                        vShopName = soapResult.vShopName[index]?.ToString(),
+                        vBusinessTypeName = soapResult.vBusinessTypeName[index]?.ToString(),
+                        vBusinessName = soapResult.vBusinessName[index]?.ToString(),
+                        vHouseNumber = soapResult.vHouseNumber[index]?.ToString(),
+                        vStreetName = soapResult.vStreetName[index]?.ToString(),
+                        vThambolName = soapResult.vThambolName[index]?.ToString(),
+                        vAmphurName = soapResult.vAmphurName[index]?.ToString(),
+                        vProvinceName = soapResult.vProvinceName[index]?.ToString(),
+                        vPostCode = soapResult.vPostCode[index]?.ToString(),
+                        vmsgerr = soapResult.vmsgerr.Count() > 0 ? soapResult.vmsgerr[index]?.ToString() : null,
+                    };
+                    listVRT.Add(vrtModel);
+                }
             }
 
-            return httpResult;
+            return listVRT;
         }
 
         /// <summary>
@@ -98,66 +89,56 @@ namespace RevenueService.Api.Controllers
         /// </param>
         /// <returns></returns>
         [HttpGet("Get")]
-        public async Task<ActionResult<HttpResultModel>> Get(VRT model)
+        public async Task<ActionResult<IEnumerable<VRT>>> Get(VRT model)
         {
-            HttpResultModel httpResult = new HttpResultModel();
-            try
+            List<VRT> listVRT = new List<VRT>();
+            VRTSoapService.vrtserviceRD3SoapClient service = new VRTSoapService.vrtserviceRD3SoapClient();
+            ChannelFactory<VRTSoapService.vrtserviceRD3Soap> channelFactory = service.ChannelFactory;
+            VRTSoapService.vrtserviceRD3Soap channel = channelFactory.CreateChannel();
+
+            VRTSoapService.ServiceRequest serviceRequest = new VRTSoapService.ServiceRequest
             {
-                VRTSoapService.vrtserviceRD3SoapClient service = new VRTSoapService.vrtserviceRD3SoapClient();
-                ChannelFactory<VRTSoapService.vrtserviceRD3Soap> channelFactory = service.ChannelFactory;
-                VRTSoapService.vrtserviceRD3Soap channel = channelFactory.CreateChannel();
-
-                VRTSoapService.ServiceRequest serviceRequest = new VRTSoapService.ServiceRequest
+                Body = new VRTSoapService.ServiceRequestBody
                 {
-                    Body = new VRTSoapService.ServiceRequestBody
-                    {
-                        username = soapUsername,
-                        password = soapPassword,
-                        ShopName = model?.vShopName,
-                        BusinessTypeCode = model?.vBusinessTypeCode,
-                        ProvinceCode = Convert.ToInt32(model?.vProvinceCode),
-                        StreetCode = Convert.ToInt32(model?.vStreetCode)
-                    }
-                };
-
-                VRTSoapService.ServiceResponse responseMessage = await channel.ServiceAsync(serviceRequest);
-                VRTSoapService.vrt soapResult = responseMessage?.Body?.ServiceResult;
-                List<VRT> listVRT = new List<VRT>();
-
-                if (soapResult != null)
-                {
-                    int countRecord = soapResult.vShopName.Count();
-
-                    for (int index = 0; index < countRecord; index++)
-                    {
-                        VRT vrtModel = new VRT
-                        {
-                            vShopName = soapResult.vShopName[index]?.ToString(),
-                            vBusinessTypeCode = model?.vBusinessTypeCode,
-                            vBusinessTypeName = soapResult.vBusinessTypeName[index]?.ToString(),
-                            vBusinessName = soapResult.vBusinessName[index]?.ToString(),
-                            vHouseNumber = soapResult.vHouseNumber[index]?.ToString(),
-                            vStreetCode = model?.vStreetCode,
-                            vStreetName = soapResult.vStreetName[index]?.ToString(),
-                            vThambolName = soapResult.vThambolName[index]?.ToString(),
-                            vAmphurName = soapResult.vAmphurName[index]?.ToString(),
-                            vProvinceCode = model?.vProvinceCode,
-                            vProvinceName = soapResult.vProvinceName[index]?.ToString(),
-                            vPostCode = soapResult.vPostCode[index]?.ToString(),
-                            vmsgerr = soapResult.vmsgerr.Count() > 0 ? soapResult.vmsgerr[index]?.ToString() : null,
-                        };
-                        listVRT.Add(vrtModel);
-                    }
+                    username = soapUsername,
+                    password = soapPassword,
+                    ShopName = model?.vShopName,
+                    BusinessTypeCode = model?.vBusinessTypeCode,
+                    ProvinceCode = Convert.ToInt32(model?.vProvinceCode),
+                    StreetCode = Convert.ToInt32(model?.vStreetCode)
                 }
+            };
 
-                httpResult.SetPropertyHttpResult(httpResult, true, "", "", StatusCodes.Status200OK, listVRT);
-            }
-            catch (Exception ex)
+            VRTSoapService.ServiceResponse responseMessage = await channel.ServiceAsync(serviceRequest);
+            VRTSoapService.vrt soapResult = responseMessage?.Body?.ServiceResult;
+
+            if (soapResult != null)
             {
-                httpResult.SetPropertyHttpResult(httpResult, false, "", ex.Message, StatusCodes.Status500InternalServerError);
+                int countRecord = soapResult.vShopName.Count();
+
+                for (int index = 0; index < countRecord; index++)
+                {
+                    VRT vrtModel = new VRT
+                    {
+                        vShopName = soapResult.vShopName[index]?.ToString(),
+                        vBusinessTypeCode = model?.vBusinessTypeCode,
+                        vBusinessTypeName = soapResult.vBusinessTypeName[index]?.ToString(),
+                        vBusinessName = soapResult.vBusinessName[index]?.ToString(),
+                        vHouseNumber = soapResult.vHouseNumber[index]?.ToString(),
+                        vStreetCode = model?.vStreetCode,
+                        vStreetName = soapResult.vStreetName[index]?.ToString(),
+                        vThambolName = soapResult.vThambolName[index]?.ToString(),
+                        vAmphurName = soapResult.vAmphurName[index]?.ToString(),
+                        vProvinceCode = model?.vProvinceCode,
+                        vProvinceName = soapResult.vProvinceName[index]?.ToString(),
+                        vPostCode = soapResult.vPostCode[index]?.ToString(),
+                        vmsgerr = soapResult.vmsgerr.Count() > 0 ? soapResult.vmsgerr[index]?.ToString() : null,
+                    };
+                    listVRT.Add(vrtModel);
+                }
             }
 
-            return httpResult;
+            return listVRT;
         }
     }
 }
