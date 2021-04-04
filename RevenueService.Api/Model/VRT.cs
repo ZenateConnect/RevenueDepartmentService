@@ -1,9 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-
-namespace RevenueService.Api.Model
+﻿namespace RevenueService.Api.Model
 {
     /// <summary>
     /// Model ข้อมูลผู้ประกอบการ

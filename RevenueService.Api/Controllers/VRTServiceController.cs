@@ -1,5 +1,4 @@
-﻿using Microsoft.AspNetCore.Http;
-using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Mvc;
 using RevenueService.Api.Model;
 using System;
 using System.Collections.Generic;
@@ -22,7 +21,6 @@ namespace RevenueService.Api.Controllers
         /// <remarks>
         /// ให้บริการข้อมูลผู้ประกอบการ ที่ได้รับสิทธิเมื่อนักท่องเที่ยวต่างประเทศ ซื้อสินค้าแล้ว สามารถเรียกคืนภาษีมูลค่าเพิ่มได้ในภายหลัง โดยให้บริการ สำหรับหน่วยงาน ที่ต้องการนำข้อมูลดังกล่าวไปให้ บริการนักท่องเที่ยว เพื่อตรวจสอบร้านค้า ที่นักท่องเที่ยวสามารถ เรียกคืนภาษีมูลค่าเพิ่ม ได้ถูกต้อง ตามกฎหมาย ซึ่งป้องกัน การแอบอ้าง จากร้านค้า ซึ่งจะเป็นปัญหาต่อ นักท่องเที่ยวในภายหลัง และให้นักท่องเที่ยว มีความมั่นใจในการซื้อสินค้าจากร้านดังกล่าว
         /// </remarks>
-        /// <param name="shopName">ชื่อร้านค้าที่ต้องการค้นหา</param>
         /// <returns></returns>
         [HttpGet("GetAll")]
         public async Task<ActionResult<IEnumerable<VRT>>> GetAll()

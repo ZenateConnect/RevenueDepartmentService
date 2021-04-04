@@ -7,9 +7,7 @@ using System.Threading.Tasks;
 
 namespace RevenueService.Api.Model
 {
-    /// <summary>
-    /// Http Response
-    /// </summary>
+    [ObsoleteAttribute("This Class is Obsolated. It legacy Code not recommend to use right this. API Should return exact HTTP Status Code, it no need to setup response right this.")]
     public class HttpResultModel
     {
         public HttpResultModel()

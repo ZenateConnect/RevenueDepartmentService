@@ -1,11 +1,6 @@
-﻿using Microsoft.AspNetCore.Http;
-using Microsoft.AspNetCore.Mvc;
-using Newtonsoft.Json;
+﻿using Microsoft.AspNetCore.Mvc;
 using Newtonsoft.Json.Linq;
 using RevenueService.Api.Model;
-using System;
-using System.Collections.Generic;
-using System.Linq;
 using System.ServiceModel;
 using System.Threading.Tasks;
 
